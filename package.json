@@ -1,0 +1,22 @@
+{
+  "name": "dr-scripts",
+  "version": "0.0.0-semantically-released",
+  "description": "CLI toolbox providing common scripts for Node.js projects.",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "homepage": "https://github.com/dustin-ruetz/dr-scripts/#readme",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dustin-ruetz/dr-scripts.git"
+  },
+  "author": "Dustin Ruetz",
+  "license": "MIT",
+  "bin": {
+    "dr-scripts": "./dist/index.js"
+  },
+  "engines": {
+    "node": ">= 8",
+    "npm": ">= 6"
+  }
+}
