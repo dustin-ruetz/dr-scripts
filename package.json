@@ -7,6 +7,11 @@
     "lint": "node ./src/ lint",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "husky": {
+    "hooks": {
+      "pre-commit": "node ./src/ pre-commit"
+    }
+  },
   "homepage": "https://github.com/dustin-ruetz/dr-scripts/#readme",
   "repository": {
     "type": "git",
@@ -25,9 +30,12 @@
     "arrify": "^2.0.1",
     "cosmiconfig": "^6.0.0",
     "cross-spawn": "^7.0.1",
+    "doctoc": "^1.4.0",
     "eslint": "^6.7.0",
     "eslint-plugin-import": "^2.18.2",
     "glob": "^7.1.6",
+    "husky": "^3.1.0",
+    "lint-staged": "^9.4.3",
     "lodash.has": "^4.5.2",
     "prettier": "^1.19.1",
     "read-pkg-up": "^7.0.0",

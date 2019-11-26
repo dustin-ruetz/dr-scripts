@@ -44,10 +44,36 @@ function resolveBin(modName, {executable = modName, cwd = process.cwd()} = {}) {
   }
 }
 
+function resolveDrScripts() {
+  if (pkg.name === 'dr-scripts') {
+    return require.resolve('./').replace(process.cwd(), '.')
+  } else {
+    return resolveBin('dr-scripts')
+  }
+}
+
 const fromRoot = (...p) => path.join(appDirectory, ...p)
 const hasFile = (...p) => fs.existsSync(fromRoot(...p))
 
 const hasPkgProp = props => arrify(props).some(prop => has(pkg, prop))
+
+function isOptedIn(key, t = true, f = false) {
+  if (!fs.existsSync(fromRoot('.opt-in'))) {
+    return f
+  }
+
+  const contents = fs.readFileSync(fromRoot('.opt-in'), 'utf-8')
+  return contents.includes(key) ? t : f
+}
+
+function isOptedOut(key, t = true, f = false) {
+  if (!fs.existsSync(fromRoot('.opt-out'))) {
+    return f
+  }
+
+  const contents = fs.readFileSync(fromRoot('.opt-out'), 'utf-8')
+  return contents.includes(key) ? t : f
+}
 
 function hasLocalConfig(moduleName, searchOptions = {}) {
   const explorerSync = cosmiconfigSync(moduleName, searchOptions)
@@ -62,6 +88,9 @@ module.exports = {
   hasFile,
   hasLocalConfig,
   hasPkgProp,
+  isOptedIn,
+  isOptedOut,
   pkg,
   resolveBin,
+  resolveDrScripts,
 }
