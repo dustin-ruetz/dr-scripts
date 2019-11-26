@@ -9,6 +9,7 @@
   },
   "husky": {
     "hooks": {
+      "commit-msg": "node ./src/ commit-msg",
       "pre-commit": "node ./src/ pre-commit"
     }
   },
@@ -27,6 +28,8 @@
     "npm": ">= 6"
   },
   "dependencies": {
+    "@commitlint/cli": "^8.2.0",
+    "@commitlint/config-conventional": "^8.2.0",
     "arrify": "^2.0.1",
     "cosmiconfig": "^6.0.0",
     "cross-spawn": "^7.0.1",
