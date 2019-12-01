@@ -9,7 +9,7 @@ const nodeVersion = {
   minimum: 8,
 }
 
-let shouldThrow = undefined
+let shouldThrow
 
 try {
   shouldThrow =
