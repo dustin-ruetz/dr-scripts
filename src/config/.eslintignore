@@ -1,3 +1,6 @@
+# the `!/*` path is a negated ignore pattern; this enables
+# linting for all of the ./src/config/ files
+!/*
 /build/
 /coverage/
 /dist/
