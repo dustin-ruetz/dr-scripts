@@ -9,7 +9,7 @@ module.exports = {
   '*.+(css|graphql|html|js|json|jsx|less|md|mdx|scss|ts|tsx|vue|yaml|yml)': [
     isOptedOut('autoformat', null, `${drScripts} format`),
     `${drScripts} lint`,
-    // `${drScripts} test --findRelatedTests`,
+    `${drScripts} test --findRelatedTests`,
     isOptedOut('autoformat', null, 'git add'),
   ].filter(Boolean),
 }

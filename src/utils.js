@@ -57,6 +57,36 @@ const hasFile = (...p) => fs.existsSync(fromRoot(...p))
 
 const hasPkgProp = props => arrify(props).some(prop => has(pkg, prop))
 
+const hasPkgSubProp = pkgProp => props =>
+  hasPkgProp(arrify(props).map(p => `${pkgProp}.${p}`))
+
+const hasDep = hasPkgSubProp('dependencies')
+const hasDevDep = hasPkgSubProp('devDependencies')
+const hasPeerDep = hasPkgSubProp('peerDependencies')
+const hasAnyDep = args => [hasDep, hasDevDep, hasPeerDep].some(fn => fn(args))
+
+const ifAnyDep = (deps, t, f) => (hasAnyDep(arrify(deps)) ? t : f)
+
+function parseEnv(name, def) {
+  if (envIsSet(name)) {
+    try {
+      return JSON.parse(process.env[name])
+    } catch (error) {
+      return process.env[name]
+    }
+  } else {
+    return def
+  }
+}
+
+function envIsSet(name) {
+  return (
+    Object.prototype.hasOwnProperty.call(process.env, name) &&
+    process.env[name] &&
+    process.env[name] !== 'undefined'
+  )
+}
+
 function isOptedIn(key, t = true, f = false) {
   if (!fs.existsSync(fromRoot('.opt-in'))) {
     return f
@@ -84,12 +114,15 @@ function hasLocalConfig(moduleName, searchOptions = {}) {
 
 module.exports = {
   appDirectory,
+  envIsSet,
   fromRoot,
   hasFile,
   hasLocalConfig,
   hasPkgProp,
+  ifAnyDep,
   isOptedIn,
   isOptedOut,
+  parseEnv,
   pkg,
   resolveBin,
   resolveDrScripts,
