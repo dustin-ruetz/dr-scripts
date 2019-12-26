@@ -1,0 +1,43 @@
+# adapted from 'Using semantic-release with GitHub Actions'
+# https://github.com/semantic-release/semantic-release/blob/master/docs/recipes/github-actions.md
+
+name: Release
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Git checkout
+        uses: actions/checkout@v1
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12
+
+      - name: Install dependendies via CI
+        run: npm ci
+
+      - name: Build package
+        run: npm run build
+
+      # note - getting 'import/no-unresolved' lint errors
+      # - name: Lint code
+      # run: npm run lint
+
+      # note - cannot run tests until is-ci package adds support for GitHub Actions
+      # issue - https://github.com/watson/ci-info/issues/31/
+      # pull request - https://github.com/watson/ci-info/pull/42/
+      # - name: Run tests
+      # run: npm test
+
+      - name: Release package
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: npx semantic-release
