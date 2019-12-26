@@ -43,43 +43,50 @@ const envTargets = isTest
   : {node: getNodeVersion(pkg)}
 const envOptions = {modules: false, loose: true, targets: envTargets}
 
-module.exports = () => ({
-  presets: [
-    [require.resolve('@babel/preset-env'), envOptions],
-    ifAnyDep(
-      ['react', 'preact'],
+module.exports = function(api) {
+  api.cache(true)
+
+  return {
+    presets: [
+      [require.resolve('@babel/preset-env'), envOptions],
+      ifAnyDep(
+        ['react', 'preact'],
+        [
+          require.resolve('@babel/preset-react'),
+          {pragma: isPreact ? 'React.h' : undefined},
+        ],
+      ),
+    ].filter(Boolean),
+    plugins: [
       [
-        require.resolve('@babel/preset-react'),
-        {pragma: isPreact ? 'React.h' : undefined},
+        require.resolve('@babel/plugin-transform-runtime'),
+        {useESModules: treeshake && !isCJS},
       ],
-    ),
-  ].filter(Boolean),
-  plugins: [
-    [
-      require.resolve('@babel/plugin-transform-runtime'),
-      {useESModules: treeshake && !isCJS},
-    ],
-    require.resolve('babel-plugin-macros'),
-    alias
-      ? [
-          require.resolve('babel-plugin-module-resolver'),
-          {root: ['./src'], alias},
-        ]
-      : null,
-    [
-      require.resolve('babel-plugin-transform-react-remove-prop-types'),
-      isPreact ? {removeImport: true} : {mode: 'unsafe-wrap'},
-    ],
-    isUMD
-      ? require.resolve('babel-plugin-transform-inline-environment-variables')
-      : null,
-    [require.resolve('@babel/plugin-proposal-class-properties'), {loose: true}],
-    require.resolve('babel-plugin-minify-dead-code-elimination'),
-    treeshake
-      ? null
-      : require.resolve('@babel/plugin-transform-modules-commonjs'),
-  ].filter(Boolean),
-})
+      require.resolve('babel-plugin-macros'),
+      alias
+        ? [
+            require.resolve('babel-plugin-module-resolver'),
+            {root: ['./src'], alias},
+          ]
+        : null,
+      [
+        require.resolve('babel-plugin-transform-react-remove-prop-types'),
+        isPreact ? {removeImport: true} : {mode: 'unsafe-wrap'},
+      ],
+      isUMD
+        ? require.resolve('babel-plugin-transform-inline-environment-variables')
+        : null,
+      [
+        require.resolve('@babel/plugin-proposal-class-properties'),
+        {loose: true},
+      ],
+      require.resolve('babel-plugin-minify-dead-code-elimination'),
+      treeshake
+        ? null
+        : require.resolve('@babel/plugin-transform-modules-commonjs'),
+    ].filter(Boolean),
+  }
+}
 
 function getNodeVersion({engines: {node: nodeVersion = '8'} = {}}) {
   const oldestVersion = semver

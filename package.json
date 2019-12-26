@@ -3,6 +3,7 @@
   "version": "0.0.0-semantically-released",
   "description": "CLI toolbox providing common scripts for Node.js projects.",
   "scripts": {
+    "build": "node ./src/ build",
     "format": "node ./src/ format",
     "lint": "node ./src/ lint",
     "test": "node ./src/ test"
@@ -28,6 +29,7 @@
     "npm": ">= 6"
   },
   "dependencies": {
+    "@babel/cli": "^7.7.7",
     "@babel/plugin-proposal-class-properties": "^7.7.4",
     "@babel/plugin-transform-runtime": "^7.7.6",
     "@babel/preset-env": "^7.7.7",
@@ -54,8 +56,10 @@
     "jest-watch-typeahead": "^0.4.2",
     "lint-staged": "^9.5.0",
     "lodash.has": "^4.5.2",
+    "mkdirp": "^0.5.1",
     "prettier": "^1.19.1",
     "read-pkg-up": "^7.0.1",
+    "rimraf": "^3.0.0",
     "semver": "^7.1.1",
     "yargs-parser": "^16.1.0"
   }
