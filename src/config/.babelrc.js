@@ -17,7 +17,7 @@ const hasBabelRuntimeDep = Boolean(
   pkg.dependencies && pkg.dependencies['@babel/runtime'],
 )
 const RUNTIME_HELPERS_MSG =
-  'You should add @babel/runtime as dependency to your package. It will allow reusing ' +
+  'You should add @babel/runtime as a dependency to your package. It will allow reusing ' +
   '"babel helpers" from node_modules rather than bundling their copies into your files.'
 
 if (!treeshake && !hasBabelRuntimeDep && !isTest) {
