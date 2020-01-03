@@ -16,15 +16,15 @@ const alias = parseEnv('BUILD_ALIAS', isPreact ? {react: 'preact'} : null)
 const hasBabelRuntimeDep = Boolean(
   pkg.dependencies && pkg.dependencies['@babel/runtime'],
 )
-const RUNTIME_HELPERS_WARN =
+const RUNTIME_HELPERS_MSG =
   'You should add @babel/runtime as dependency to your package. It will allow reusing ' +
   '"babel helpers" from node_modules rather than bundling their copies into your files.'
 
 if (!treeshake && !hasBabelRuntimeDep && !isTest) {
-  throw new Error(RUNTIME_HELPERS_WARN)
+  throw new Error(RUNTIME_HELPERS_MSG)
 } else if (treeshake && !isUMD && !hasBabelRuntimeDep) {
   // eslint-disable-next-line no-console
-  console.warn(RUNTIME_HELPERS_WARN)
+  console.warn(RUNTIME_HELPERS_MSG)
 }
 
 /**
