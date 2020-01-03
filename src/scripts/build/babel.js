@@ -27,6 +27,12 @@ const ignore = args.includes('--ignore') ? [] : ['--ignore', builtInIgnore]
 
 const copyFiles = args.includes('--no-copy-files') ? [] : ['--copy-files']
 
+// Babel does not copy dotfiles by default, so include them below
+// https://github.com/babel/babel/issues/5052/#issuecomment-337750791
+const dotFiles = args.includes('--exclude-dotfiles')
+  ? []
+  : ['--include-dotfiles']
+
 const useSpecifiedOutDir = args.includes('--out-dir')
 const builtInOutDir = 'dist'
 const outDir = useSpecifiedOutDir ? [] : ['--out-dir', builtInOutDir]
@@ -39,7 +45,9 @@ if (!useSpecifiedOutDir && !args.includes('--no-clean')) {
 
 const result = spawn.sync(
   resolveBin('@babel/cli', {executable: 'babel'}),
-  [...outDir, ...copyFiles, ...ignore, ...config, 'src'].concat(args),
+  [...outDir, ...copyFiles, ...dotFiles, ...ignore, ...config, 'src'].concat(
+    args,
+  ),
   {stdio: 'inherit'},
 )
 
