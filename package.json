@@ -6,6 +6,7 @@
     "build": "node ./src/ build",
     "format": "node ./src/ format",
     "lint": "node ./src/ lint",
+    "init-repo": "node ./src/ init-repo",
     "test": "node ./src/ test"
   },
   "husky": {

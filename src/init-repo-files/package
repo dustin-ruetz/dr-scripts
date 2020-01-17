@@ -1,0 +1,36 @@
+{
+  "name": "",
+  "version": "0.0.0-semantically-released",
+  "description": "",
+  "scripts": {
+    "build": "dr-scripts build",
+    "format": "dr-scripts format",
+    "lint": "dr-scripts lint",
+    "test": "dr-scripts lint test"
+  },
+  "husky": {
+    "hooks": {
+      "commit-msg": "dr-scripts commit-msg",
+      "pre-commit": "dr-scripts pre-commit"
+    }
+  },
+  "homepage": "",
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "author": "Dustin Ruetz",
+  "license": "MIT",
+  "engines": {
+    "node": ">= 8",
+    "npm": ">= 6"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "dr-scripts": "^1.0.0"
+  },
+  "eslintConfig": {
+    "extends": "./node_modules/dr-scripts/dist/config/.eslintrc.js"
+  },
+  "prettier": "./node_modules/dr-scripts/dist/config/.prettierrc.js"
+}

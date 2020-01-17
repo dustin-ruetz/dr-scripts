@@ -1,0 +1,63 @@
+# adapted from "Mind the End of Your Line" article by Tim Clem
+# https://adaptivepatchwork.com/2012/03/01/mind-the-end-of-your-line
+
+# make git detect all text files and auto-normalize them (convert 'crlf to' 'lf')
+# declare this setting first so that subsequent lines can override it
+* text=auto
+
+# these file types are text; they should be normalized
+# "Git will run CRLF to LF replacement on these files every time they are
+# written to the object database, and the reverse replacement will be run
+# when writing out to the working directory."
+*.ahk   text
+*.bat   text
+*.cmd   text
+*.css   text
+*.csv   text
+*.html  text
+*.js    text
+*.json  text
+*.jsonc text
+*.jsx   text
+*.log   text
+*.md    text
+*.mdx   text
+*.php   text
+*.pug   text
+*.ps1   text
+*.psm1  text
+*.scss  text
+*.sh    text
+*.styl  text
+*.svg   text
+*.ts    text
+*.tsx   text
+*.txt   text
+*.url   text
+*.xml   text
+*.yaml  text
+*.yml   text
+
+# these file types are binary; they should not be normalized
+*.avi   binary
+*.bmp   binary
+*.eot   binary
+*.exe   binary
+*.gif   binary
+*.ico   binary
+*.jpg   binary
+*.jpeg  binary
+*.lnk   binary
+*.mp3   binary
+*.mp4   binary
+*.otf   binary
+*.pdf   binary
+*.png   binary
+*.psd   binary
+*.tif   binary
+*.tiff  binary
+*.ttf   binary
+*.wav   binary
+*.webp  binary
+*.woff  binary
+*.woff2 binary
