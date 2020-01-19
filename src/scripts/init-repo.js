@@ -13,6 +13,14 @@ if (parsedArgs._.length !== 1) {
 
 const repoName = parsedArgs._[0]
 
+// verify that repo-name contains only lowercase alphanumeric characters and hyphens
+const illegalRepoName = /[^a-z0-9-]/.test(repoName)
+if (illegalRepoName) {
+  throw new Error(
+    'repo-name can only contain lowercase alphanumeric characters and hyphens.',
+  )
+}
+
 // cwd = current working directory
 const cwd = process.cwd()
 
