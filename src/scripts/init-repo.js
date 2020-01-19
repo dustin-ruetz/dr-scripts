@@ -1,5 +1,9 @@
-const {copyFile, readdir} = require('fs').promises
+const {copyFile, readdir, readFile, writeFile} = require('fs').promises
 const path = require('path')
+const yargsParser = require('yargs-parser')
+
+const parsedArgs = yargsParser(process.argv.slice(2))
+const repoName = parsedArgs._[0]
 
 // cwd = current working directory
 const cwd = process.cwd()
@@ -36,6 +40,40 @@ const getFilenames = {
   },
 }
 
+async function writeFileContent(newFilename) {
+  const file = {
+    fullPath: `${cwd}/${newFilename}`,
+    getContent: function() {
+      const content = readFile(this.fullPath, {encoding: 'utf8'})
+      return content
+    },
+  }
+
+  const content = await file.getContent()
+
+  let replaceContent
+  switch (newFilename) {
+    case 'license':
+      replaceContent = {from: '{copyright-year}', to: new Date().getFullYear()}
+      break
+    case 'package.json':
+    case 'readme.md':
+      replaceContent = {from: /{repo-name}/g, to: repoName}
+      break
+  }
+
+  writeFile(
+    file.fullPath,
+    content.replace(replaceContent.from, replaceContent.to),
+    {encoding: 'utf8'},
+  )
+
+  // eslint-disable-next-line no-console
+  console.log(
+    `* Set ${replaceContent.from} to ${replaceContent.to} in ${newFilename}.`,
+  )
+}
+
 async function copyFiles() {
   const results = {
     failed: [],
@@ -57,7 +95,17 @@ async function copyFiles() {
           `${initRepoFilesDir}/${initialFilename}`,
           `${cwd}/${newFilename}`,
         )
-          .then(() => results.succeeded.push({name: newFilename}))
+          .then(() => {
+            switch (newFilename) {
+              case 'license':
+              case 'package.json':
+              case 'readme.md':
+                writeFileContent(newFilename)
+                break
+            }
+
+            results.succeeded.push({name: newFilename})
+          })
           .catch(() =>
             results.failed.push({
               name: initialFilename,

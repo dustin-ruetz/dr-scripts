@@ -1,5 +1,5 @@
 {
-  "name": "",
+  "name": "{repo-name}",
   "version": "0.0.0-semantically-released",
   "description": "",
   "scripts": {
@@ -14,10 +14,10 @@
       "pre-commit": "dr-scripts pre-commit"
     }
   },
-  "homepage": "",
+  "homepage": "https://github.com/dustin-ruetz/{repo-name}/#readme",
   "repository": {
     "type": "git",
-    "url": ""
+    "url": "https://github.com/dustin-ruetz/{repo-name}.git"
   },
   "author": "Dustin Ruetz",
   "license": "MIT",
