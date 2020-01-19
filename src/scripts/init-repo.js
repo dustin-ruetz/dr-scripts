@@ -2,7 +2,15 @@ const {copyFile, readdir, readFile, writeFile} = require('fs').promises
 const path = require('path')
 const yargsParser = require('yargs-parser')
 
+// verify that only one argument is passed via the CLI
 const parsedArgs = yargsParser(process.argv.slice(2))
+if (parsedArgs._.length !== 1) {
+  throw new Error(
+    '`dr-scripts init-repo` accepts one argument (a repo-name); ' +
+      `${parsedArgs._.length} arguments were passed.`,
+  )
+}
+
 const repoName = parsedArgs._[0]
 
 // cwd = current working directory
