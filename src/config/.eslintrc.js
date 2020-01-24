@@ -1,3 +1,5 @@
+const {ifAnyDep} = require('../utils.js')
+
 module.exports = {
   env: {
     es6: true,
@@ -8,9 +10,12 @@ module.exports = {
     'eslint:recommended',
     'plugin:import/errors',
     'plugin:import/warnings',
-  ],
+    ifAnyDep('react', './.eslint.react.js'),
+    ifAnyDep('react', './.eslint.jsx-a11y.js'),
+  ].filter(Boolean),
   parserOptions: {
     ecmaVersion: 2019,
+    sourceType: 'module',
   },
   rules: {
     camelcase: 'error',
