@@ -1,7 +1,13 @@
 const path = require('path')
 const spawn = require('cross-spawn')
 const yargsParser = require('yargs-parser')
-const {fromRoot, hasFile, hasPkgProp, resolveBin} = require('../utils.js')
+const {
+  fromRoot,
+  hasFile,
+  hasPkgProp,
+  ifAnyDep,
+  resolveBin,
+} = require('../utils.js')
 
 let args = process.argv.slice(2)
 const here = p => path.join(__dirname, p)
@@ -46,9 +52,12 @@ if (filesGiven) {
   args = args.filter(a => !parsedArgs._.includes(a) || /\.jsx?$/.test(a))
 }
 
+const extensions = ['--ext', '.js']
+ifAnyDep('react', (extensions[1] = extensions[1].concat(',.jsx')))
+
 const result = spawn.sync(
   resolveBin('eslint'),
-  [...config, ...ignore, ...cache, ...args, ...filesToApply],
+  [...config, ...ignore, ...cache, ...args, ...filesToApply, ...extensions],
   {stdio: 'inherit'},
 )
 
