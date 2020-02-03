@@ -6,7 +6,7 @@
     "build": "dr-scripts build",
     "format": "dr-scripts format",
     "lint": "dr-scripts lint",
-    "test": "dr-scripts lint test"
+    "test": "dr-scripts test"
   },
   "husky": {
     "hooks": {
