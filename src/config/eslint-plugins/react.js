@@ -2,8 +2,8 @@
 // https://github.com/yannickcr/eslint-plugin-react/blob/master/index.js
 const {rules} = require('eslint-plugin-react').configs.recommended
 
-// react/no-unsafe: all unsafe methods should be accompanied by an explainer comment
-rules['react/no-unsafe'] = 'warn'
+// make modifications to plugin's recommended rules
+rules['react/no-unsafe'] = 'warn' // all unsafe methods should be accompanied by an explainer comment
 
 module.exports = {
   env: {
@@ -11,7 +11,7 @@ module.exports = {
   },
   plugins: ['react', 'react-hooks'],
   rules: {
-    // spread the plugin's recommended rules
+    // spread the recommended rules (includes above modifications)
     ...rules,
     // recommended rules from eslint-plugin-react-hooks
     // https://github.com/facebook/react/tree/master/packages/eslint-plugin-react-hooks/

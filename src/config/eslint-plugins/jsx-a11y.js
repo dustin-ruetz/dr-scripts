@@ -2,6 +2,7 @@
 // https://github.com/evcohen/eslint-plugin-jsx-a11y/blob/master/src/index.js
 const {rules} = require('eslint-plugin-jsx-a11y/lib/').configs.recommended
 
+// make modifications to plugin's recommended rules
 /**
  * jsx-a11y/autocomplete-valid: getting 'definition for rule was not found' error
  * remove this code when the package issues a release that includes the below PR
@@ -12,7 +13,7 @@ delete rules['jsx-a11y/autocomplete-valid']
 module.exports = {
   plugins: ['jsx-a11y'],
   rules: {
-    // spread the plugin's recommended rules
+    // spread the recommended rules (includes above modifications)
     ...rules,
   },
 }
