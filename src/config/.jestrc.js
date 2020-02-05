@@ -13,7 +13,11 @@ const ignores = [
 ]
 
 const jestConfig = {
-  roots: [fromRoot('src')],
+  roots: [
+    fromRoot('src'),
+    // for Next.js apps add the 'pages' directory as a root folder
+    ifAnyDep('next', fromRoot('pages')),
+  ].filter(Boolean),
   /**
    * provide an array of globs to paths that we want Jest to collect coverage for
    *
