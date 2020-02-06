@@ -17,7 +17,6 @@ Adapted from Kent C. Dodds' [kcd-scripts][kcd-scripts] package and ["How toolkit
 
 dr-scripts is a CLI tool that abstracts away configuration for Node.js projects. It's responsible for:
 
-- Building code
 - Formatting
 - Initializing new repositories (see below for Usage)
 - Linting

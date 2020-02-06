@@ -3,10 +3,10 @@
   "version": "0.0.0-semantically-released",
   "description": "",
   "scripts": {
-    "build": "dr-scripts build",
     "format": "dr-scripts format",
     "lint": "dr-scripts lint",
-    "test": "dr-scripts test"
+    "test": "dr-scripts test",
+    "test:coverage": "dr-scripts test --coverage"
   },
   "husky": {
     "hooks": {

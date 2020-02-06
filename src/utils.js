@@ -3,9 +3,7 @@ const path = require('path')
 const arrify = require('arrify')
 const {cosmiconfigSync} = require('cosmiconfig')
 const has = require('lodash.has')
-const mkdirp = require('mkdirp')
 const readPkgUp = require('read-pkg-up')
-const rimraf = require('rimraf')
 const which = require('which')
 
 const {packageJson: pkg, path: pkgPath} = readPkgUp.sync({
@@ -89,45 +87,6 @@ function envIsSet(name) {
   )
 }
 
-function getConcurrentlyArgs(scripts, {killOthers = true} = {}) {
-  const colors = [
-    'bgBlack',
-    'bgBlue',
-    'bgCyan',
-    'bgGreen',
-    'bgMagenta',
-    'bgRed',
-    'bgYellow',
-    'bgWhite',
-  ]
-
-  scripts = Object.entries(scripts).reduce((all, [name, script]) => {
-    if (script) {
-      all[name] = script
-    }
-
-    return all
-  }, {})
-
-  const prefixColors = Object.keys(scripts)
-    .reduce(
-      (pColors, _s, i) =>
-        pColors.concat([`${colors[i % colors.length]}.bold.reset`]),
-      [],
-    )
-    .join(',')
-
-  // prettier-ignore
-  return [
-    killOthers ? '--kill-others-on-fail' : null,
-    '--prefix', '[{name}]',
-    '--names', Object.keys(scripts).join(','),
-    '--prefix-colors', prefixColors,
-    // use JSON.stringify to escape quotes
-    ...Object.values(scripts).map(s => JSON.stringify(s)),
-  ].filter(Boolean)
-}
-
 function isOptedIn(key, t = true, f = false) {
   if (!fs.existsSync(fromRoot('.opt-in'))) {
     return f
@@ -146,30 +105,6 @@ function isOptedOut(key, t = true, f = false) {
   return contents.includes(key) ? t : f
 }
 
-function writeExtraEntry(name, {cjs, esm}, clean = true) {
-  if (clean) {
-    rimraf.sync(fromRoot(name))
-  }
-
-  mkdirp.sync(fromRoot(name))
-
-  const pkgJson = fromRoot(`${name}/package.json`)
-  const entryDir = fromRoot(name)
-
-  fs.writeFileSync(
-    pkgJson,
-    JSON.stringify(
-      {
-        main: path.relative(entryDir, cjs),
-        'jsnext:main': path.relative(entryDir, esm),
-        module: path.relative(entryDir, esm),
-      },
-      null,
-      2,
-    ),
-  )
-}
-
 function hasLocalConfig(moduleName, searchOptions = {}) {
   const explorerSync = cosmiconfigSync(moduleName, searchOptions)
   const result = explorerSync.search(pkgPath)
@@ -181,7 +116,6 @@ module.exports = {
   appDirectory,
   envIsSet,
   fromRoot,
-  getConcurrentlyArgs,
   hasFile,
   hasLocalConfig,
   hasPkgProp,
@@ -192,5 +126,4 @@ module.exports = {
   pkg,
   resolveBin,
   resolveDrScripts,
-  writeExtraEntry,
 }

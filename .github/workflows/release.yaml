@@ -20,11 +20,9 @@ jobs:
         with:
           node-version: 12
 
-      - name: Install dependencies via CI
-        run: npm ci
-
-      - name: Build package
-        run: npm run build
+      # note - commenting out `npm ci` until installed packages are being used in pipeline scripts
+      # - name: Install dependencies via CI
+      # run: npm ci
 
       # note - getting 'import/no-unresolved' lint errors
       # - name: Lint code
