@@ -27,7 +27,7 @@
   },
   "dependencies": {},
   "devDependencies": {
-    "dr-scripts": "^1.0.0"
+    "dr-scripts": "^2.0.0"
   },
   "eslintConfig": {
     "extends": "./node_modules/dr-scripts/dist/config/.eslintrc.js"
