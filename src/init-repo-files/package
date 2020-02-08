@@ -30,7 +30,7 @@
     "dr-scripts": "^2.0.0"
   },
   "eslintConfig": {
-    "extends": "./node_modules/dr-scripts/dist/config/.eslintrc.js"
+    "extends": "./node_modules/dr-scripts/src/config/.eslintrc.js"
   },
-  "prettier": "./node_modules/dr-scripts/dist/config/.prettierrc.js"
+  "prettier": "./node_modules/dr-scripts/src/config/.prettierrc.js"
 }
