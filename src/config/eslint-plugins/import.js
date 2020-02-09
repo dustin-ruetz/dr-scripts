@@ -16,6 +16,7 @@ module.exports = {
     'import/no-absolute-path': 'error',
     'import/no-extraneous-dependencies': 'error',
     'import/no-self-import': 'error',
+    'import/order': 'error',
     'import/prefer-default-export': 'error',
   },
   // https://github.com/benmosher/eslint-plugin-import/blob/master/config/react.js

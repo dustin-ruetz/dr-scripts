@@ -59,7 +59,7 @@ module.exports = {
     'no-useless-rename': 'error',
     'no-var': 'error',
     'one-var': ['error', 'never'],
-    'sort-imports': 'error',
+    'prefer-const': 'error',
     yoda: 'error',
   },
 }
