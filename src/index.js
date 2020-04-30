@@ -2,7 +2,7 @@
 
 const nodeVersion = {
   full: process.version,
-  major: function() {
+  major: function () {
     return Number(this.full.replace('v', '').split('.')[0])
   },
   // minimum required Node.js version to run dr-scripts

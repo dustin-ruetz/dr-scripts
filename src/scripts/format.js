@@ -6,8 +6,8 @@ const {hasFile, hasLocalConfig, resolveBin} = require('../utils.js')
 const args = process.argv.slice(2)
 const parsedArgs = yargsParser(args)
 
-const here = p => path.join(__dirname, p)
-const hereRelative = p => here(p).replace(process.cwd(), '.')
+const here = (p) => path.join(__dirname, p)
+const hereRelative = (p) => here(p).replace(process.cwd(), '.')
 
 const useBuiltinConfig =
   !args.includes('--config') && !hasLocalConfig('prettier')
@@ -26,7 +26,7 @@ const write = args.includes('--no-write') ? [] : ['--write']
 // this ensures that when running the format script as a pre-commit hook,
 // we make the full file path relative so that it's treated as a glob,
 // and this way the .prettierignore file will be applied
-const relativeArgs = args.map(a => a.replace(`${process.cwd()}/`, ''))
+const relativeArgs = args.map((a) => a.replace(`${process.cwd()}/`, ''))
 
 // prettier-ignore
 const filesToApply = parsedArgs._.length

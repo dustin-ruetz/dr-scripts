@@ -55,15 +55,16 @@ function resolveDrScripts() {
 const fromRoot = (...p) => path.join(appDirectory, ...p)
 const hasFile = (...p) => fs.existsSync(fromRoot(...p))
 
-const hasPkgProp = props => arrify(props).some(prop => has(pkg, prop))
+const hasPkgProp = (props) => arrify(props).some((prop) => has(pkg, prop))
 
-const hasPkgSubProp = pkgProp => props =>
-  hasPkgProp(arrify(props).map(p => `${pkgProp}.${p}`))
+const hasPkgSubProp = (pkgProp) => (props) =>
+  hasPkgProp(arrify(props).map((p) => `${pkgProp}.${p}`))
 
 const hasDep = hasPkgSubProp('dependencies')
 const hasDevDep = hasPkgSubProp('devDependencies')
 const hasPeerDep = hasPkgSubProp('peerDependencies')
-const hasAnyDep = args => [hasDep, hasDevDep, hasPeerDep].some(fn => fn(args))
+const hasAnyDep = (args) =>
+  [hasDep, hasDevDep, hasPeerDep].some((fn) => fn(args))
 
 const ifAnyDep = (deps, t, f) => (hasAnyDep(arrify(deps)) ? t : f)
 

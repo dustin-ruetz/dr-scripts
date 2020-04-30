@@ -24,8 +24,8 @@ if (illegalRepoName) {
 // cwd = current working directory
 const cwd = process.cwd()
 
-const here = p => path.join(__dirname, p)
-const hereRelative = p => here(p).replace(cwd, '.')
+const here = (p) => path.join(__dirname, p)
+const hereRelative = (p) => here(p).replace(cwd, '.')
 
 const initRepoFilesDir = hereRelative('../init-repo-files/')
 
@@ -39,8 +39,8 @@ const getFilenames = {
     {name: 'readme', type: 'md'},
   ],
   initial: () => readdir(initRepoFilesDir),
-  new: function(initialName) {
-    const file = this.files.find(file => file.name === initialName)
+  new: function (initialName) {
+    const file = this.files.find((file) => file.name === initialName)
     const type = file ? file.type : undefined
 
     switch (type) {
@@ -59,7 +59,7 @@ const getFilenames = {
 async function writeFileContent(newFilename) {
   const file = {
     fullPath: `${cwd}/${newFilename}`,
-    getContent: function() {
+    getContent: function () {
       const content = readFile(this.fullPath, {encoding: 'utf8'})
       return content
     },
@@ -101,7 +101,7 @@ async function copyFiles() {
   // array iteration with promises adapted from "Making array iteration easy when using async/await" by Antonio Val
   // https://medium.com/@antonioval/making-array-iteration-easy-when-using-async-await-6315c3225838
   await Promise.all(
-    initialFilenames.map(async initialFilename => {
+    initialFilenames.map(async (initialFilename) => {
       const newFilename = getFilenames.new(initialFilename)
 
       if (newFilename) {
@@ -148,7 +148,7 @@ copyFiles().then(({failed, succeeded}) => {
 
   function logFilenames(fileList) {
     // sort fileList using file.name
-    fileList.sort(function(fileA, fileB) {
+    fileList.sort(function (fileA, fileB) {
       if (fileA.name < fileB.name) return -1
       if (fileA.name > fileB.name) return 1
       return 0
@@ -156,12 +156,12 @@ copyFiles().then(({failed, succeeded}) => {
 
     switch (fileList) {
       case failed:
-        fileList.forEach(file =>
+        fileList.forEach((file) =>
           console.log(` ❌  ${file.name} (error: ${file.error})`),
         )
         break
       case succeeded:
-        fileList.forEach(file => console.log(` ✅  ${file.name}`))
+        fileList.forEach((file) => console.log(` ✅  ${file.name}`))
         break
     }
   }

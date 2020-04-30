@@ -1,7 +1,7 @@
 const path = require('path')
 const {fromRoot, hasFile, ifAnyDep} = require('../utils.js')
 
-const here = p => path.join(__dirname, p)
+const here = (p) => path.join(__dirname, p)
 
 const ignores = [
   '__mocks__',

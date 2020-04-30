@@ -10,8 +10,8 @@ const {
 } = require('../utils.js')
 
 let args = process.argv.slice(2)
-const here = p => path.join(__dirname, p)
-const hereRelative = p => here(p).replace(process.cwd(), '.')
+const here = (p) => path.join(__dirname, p)
+const hereRelative = (p) => here(p).replace(process.cwd(), '.')
 const parsedArgs = yargsParser(args)
 
 const useBuiltinConfig =
@@ -49,7 +49,7 @@ if (filesGiven) {
   // take all the flag-less arguments (the files that should be linted) and
   // and filter out the ones that aren't JavaScript, otherwise
   // non-JS files may be passed through
-  args = args.filter(a => !parsedArgs._.includes(a) || /\.jsx?$/.test(a))
+  args = args.filter((a) => !parsedArgs._.includes(a) || /\.jsx?$/.test(a))
 }
 
 const extensions = ['--ext', '.js']
