@@ -7,6 +7,4 @@ test('configuration', () => {
   expect(config.plugins.length).toEqual(1)
   // verify that the plugins are in the correct order
   expect(config.plugins[0]).toEqual('jsx-a11y')
-  // verify the modification to the recommended rules
-  expect(config.rules['jsx-a11y/autocomplete-valid']).toEqual(undefined)
 })
