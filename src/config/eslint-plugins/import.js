@@ -14,10 +14,10 @@ module.exports = {
     // add custom rules
     'import/extensions': ['error', 'ignorePackages'],
     'import/no-absolute-path': 'error',
+    'import/no-default-export': 'error',
     'import/no-extraneous-dependencies': 'error',
     'import/no-self-import': 'error',
     'import/order': 'error',
-    'import/prefer-default-export': 'error',
   },
   // https://github.com/benmosher/eslint-plugin-import/blob/master/config/react.js
   settings: {

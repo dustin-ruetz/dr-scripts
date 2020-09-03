@@ -15,10 +15,10 @@ test('configuration', () => {
   // verify the custom rules
   expect(config.rules['import/extensions']).toEqual(['error', 'ignorePackages'])
   expect(config.rules['import/no-absolute-path']).toEqual('error')
+  expect(config.rules['import/no-default-export']).toEqual('error')
   expect(config.rules['import/no-extraneous-dependencies']).toEqual('error')
   expect(config.rules['import/no-self-import']).toEqual('error')
   expect(config.rules['import/order']).toEqual('error')
-  expect(config.rules['import/prefer-default-export']).toEqual('error')
   // verify the settings
   expect(config.settings['import/extensions'][0]).toEqual('js')
 })
