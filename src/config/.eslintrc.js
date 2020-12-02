@@ -17,7 +17,7 @@ module.exports = {
      * consume dr-scripts because ESLint can only do this when the plugins are
      * explicitly installed in the application's package.json
      *
-     * open the ./eslint-plugin/*.js files to see how they work
+     * open the ./eslint-plugins/*.js files to see how they work
      */
     ifAnyDep('pug', './eslint-extends/pug.js'),
     ifAnyDep('react', './eslint-plugins/react.js'),
