@@ -1,7 +1,7 @@
 const path = require('path')
 const spawn = require('cross-spawn')
 const yargsParser = require('yargs-parser')
-const {hasFile, hasLocalConfig, resolveBin} = require('../utils.js')
+const {hasFile, hasLocalConfig, ifAnyDep, resolveBin} = require('../utils.js')
 
 const args = process.argv.slice(2)
 const parsedArgs = yargsParser(args)
@@ -22,6 +22,7 @@ const ignore = useBuiltinIgnore
   : []
 
 const write = args.includes('--no-write') ? [] : ['--write']
+const writePug = ifAnyDep('pug', ['--write', '**/*.pug'], [])
 
 // this ensures that when running the format script as a pre-commit hook,
 // we make the full file path relative so that it's treated as a glob,
@@ -35,7 +36,9 @@ const filesToApply = parsedArgs._.length
 
 const result = spawn.sync(
   resolveBin('prettier'),
-  [...config, ...ignore, ...write, ...filesToApply].concat(relativeArgs),
+  [...config, ...ignore, ...write, ...writePug, ...filesToApply].concat(
+    relativeArgs,
+  ),
   {stdio: 'inherit'},
 )
 
