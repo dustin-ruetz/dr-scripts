@@ -29,6 +29,13 @@
     "node": ">= 8",
     "npm": ">= 6"
   },
+  "dependenciesComments": {
+    "prettier": [
+      "Prettier recommends specifying an exact version (i.e. not prefixed with a ^ caret)",
+      "to ensure that everyone using it installs the exact same version",
+      "https://prettier.io/docs/en/install.html#summary"
+    ]
+  },
   "dependencies": {
     "@babel/preset-env": "^7.14.1",
     "@babel/preset-react": "^7.13.13",
@@ -53,7 +60,7 @@
     "jest-watch-typeahead": "^0.6.3",
     "lint-staged": "^11.0.0",
     "lodash.has": "^4.5.2",
-    "prettier": "^2.3.0",
+    "prettier": "2.3.0",
     "read-pkg-up": "^7.0.1",
     "which": "^2.0.2",
     "yargs-parser": "^20.2.7"
