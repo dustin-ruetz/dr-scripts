@@ -26,7 +26,7 @@
     "dr-scripts": "./src/index.js"
   },
   "engines": {
-    "node": ">= 8",
+    "node": ">= 12.13.0",
     "npm": ">= 6"
   },
   "dependenciesComments": {

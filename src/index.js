@@ -6,7 +6,7 @@ const nodeVersion = {
     return Number(this.full.replace('v', '').split('.')[0])
   },
   // minimum required Node.js version to run dr-scripts
-  minimum: 8,
+  minimum: 12,
 }
 
 let shouldThrow

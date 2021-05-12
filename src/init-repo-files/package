@@ -22,12 +22,12 @@
   "author": "Dustin Ruetz",
   "license": "MIT",
   "engines": {
-    "node": ">= 8",
+    "node": ">= 12.13.0",
     "npm": ">= 6"
   },
   "dependencies": {},
   "devDependencies": {
-    "dr-scripts": "^2.0.0"
+    "dr-scripts": "^3.0.0"
   },
   "eslintConfig": {
     "extends": "./node_modules/dr-scripts/src/config/.eslintrc.js"
