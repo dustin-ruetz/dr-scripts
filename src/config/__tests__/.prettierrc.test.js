@@ -5,8 +5,8 @@ test('Prettier config', () => {
   expect(typeof config).toEqual('object')
   // verify that its key/value pairs are of the correct type
   expect(typeof config.arrowParens).toEqual('string')
+  expect(typeof config.bracketSameLine).toEqual('boolean')
   expect(typeof config.bracketSpacing).toEqual('boolean')
-  expect(typeof config.jsxBracketSameLine).toEqual('boolean')
   expect(typeof config.jsxSingleQuote).toEqual('boolean')
   expect(typeof config.printWidth).toEqual('number')
   expect(typeof config.proseWrap).toEqual('string')

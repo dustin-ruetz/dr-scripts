@@ -1,7 +1,7 @@
 module.exports = {
   arrowParens: 'always',
+  bracketSameLine: false,
   bracketSpacing: false,
-  jsxBracketSameLine: false,
   jsxSingleQuote: false,
   printWidth: 80,
   proseWrap: 'preserve',
@@ -19,7 +19,7 @@ module.exports = {
    */
   pugAttributeSeparator: 'as-needed',
   pugClassNotation: 'as-is',
-  pugClosingBracketPosition: 'new-line',
+  pugBracketSameLine: false,
   pugCommentPreserveSpaces: 'trim-all',
   pugIdNotation: 'as-is',
   pugSingleQuote: false,
