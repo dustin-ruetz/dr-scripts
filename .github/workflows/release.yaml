@@ -1,5 +1,5 @@
 # adapted from 'Using semantic-release with GitHub Actions'
-# https://github.com/semantic-release/semantic-release/blob/master/docs/recipes/github-actions.md
+# https://github.com/semantic-release/semantic-release/blob/master/docs/recipes/ci-configurations/github-actions.md
 
 name: Release
 
@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Git checkout
-        uses: actions/checkout@v1
+        uses: actions/checkout@v2
         with:
           fetch-depth: 0
 
@@ -37,6 +37,7 @@ jobs:
 
       - name: Release package
         env:
-          GH_TOKEN: ${{ secrets.GH_TOKEN }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+          # note - GitHub doesn't accept secrets beginning with the GITHUB_ prefix
+          GH_TOKEN_DRSCRIPTS: ${{ secrets.GH_TOKEN_DRSCRIPTS }}
+          NPM_TOKEN_DRSCRIPTS: ${{ secrets.NPM_TOKEN_DRSCRIPTS }}
         run: npx semantic-release --branches main
