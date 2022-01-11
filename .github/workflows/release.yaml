@@ -37,7 +37,9 @@ jobs:
 
       - name: Release package
         env:
-          # note - GitHub doesn't accept secrets beginning with the GITHUB_ prefix
-          GH_TOKEN_DRSCRIPTS: ${{ secrets.GH_TOKEN_DRSCRIPTS }}
-          NPM_TOKEN_DRSCRIPTS: ${{ secrets.NPM_TOKEN_DRSCRIPTS }}
+          # note - environment secret key names for semantic-release must be GH_TOKEN and NPM_TOKEN
+          # https://github.com/semantic-release/github/blob/master/README.md
+          # https://github.com/semantic-release/npm/blob/master/README.md
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: npx semantic-release --branches main
