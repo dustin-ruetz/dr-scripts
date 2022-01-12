@@ -25,14 +25,11 @@ jobs:
       - name: Install dependencies via CI
         run: npm ci
 
-      - name: Lint code
+      - name: Lint codebase
         run: npm run lint
 
-      # note - cannot run tests until is-ci package adds support for GitHub Actions
-      # issue - https://github.com/watson/ci-info/issues/31/
-      # pull request - https://github.com/watson/ci-info/pull/42/
-      # - name: Run tests
-      # run: npm test
+      - name: Test codebase
+        run: npm test
 
       - name: Release package
         env:
