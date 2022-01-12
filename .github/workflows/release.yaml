@@ -25,9 +25,8 @@ jobs:
       - name: Install dependencies via CI
         run: npm ci
 
-      # note - getting 'import/no-unresolved' lint errors
-      # - name: Lint code
-      # run: npm run lint
+      - name: Lint code
+        run: npm run lint
 
       # note - cannot run tests until is-ci package adds support for GitHub Actions
       # issue - https://github.com/watson/ci-info/issues/31/
