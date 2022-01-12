@@ -41,7 +41,7 @@
     "@babel/preset-react": "^7.16.7",
     "@commitlint/cli": "^16.0.2",
     "@commitlint/config-conventional": "^16.0.0",
-    "@prettier/plugin-pug": "^1.17.1",
+    "@prettier/plugin-pug": "^1.19.1",
     "arrify": "^2.0.1",
     "babel-jest": "^27.4.6",
     "cosmiconfig": "^7.0.1",
@@ -60,7 +60,7 @@
     "jest-watch-typeahead": "^1.0.0",
     "lint-staged": "^11.2.6",
     "lodash.has": "^4.5.2",
-    "prettier": "2.4.1",
+    "prettier": "2.5.1",
     "read-pkg-up": "^7.0.1",
     "which": "^2.0.2",
     "yargs-parser": "^21.0.0"
