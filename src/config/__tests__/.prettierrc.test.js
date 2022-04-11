@@ -12,6 +12,7 @@ test('Prettier config', () => {
   expect(typeof config.proseWrap).toEqual('string')
   expect(typeof config.quoteProps).toEqual('string')
   expect(typeof config.semi).toEqual('boolean')
+  expect(typeof config.singleAttributePerLine).toEqual('boolean')
   expect(typeof config.singleQuote).toEqual('boolean')
   expect(typeof config.tabWidth).toEqual('number')
   expect(typeof config.trailingComma).toEqual('string')

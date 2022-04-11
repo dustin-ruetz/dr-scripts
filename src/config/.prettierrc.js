@@ -7,6 +7,7 @@ module.exports = {
   proseWrap: 'preserve',
   quoteProps: 'as-needed',
   semi: false,
+  singleAttributePerLine: false,
   singleQuote: true,
   tabWidth: 2,
   trailingComma: 'all',
