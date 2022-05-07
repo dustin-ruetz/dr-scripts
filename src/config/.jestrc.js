@@ -46,7 +46,9 @@ const jestConfig = {
   ],
   // note that `testPathIgnorePatterns` ignores '/node_modules/' by default
   testPathIgnorePatterns: [...ignores],
-  testURL: 'http://localhost',
+  testEnvironmentOptions: {
+    url: 'http://localhost',
+  },
   // open the ./babel-transform.js file to see the transforms being applied
   transform: {
     '^.+\\.[j|t]sx?$': here('./babel-transform.js'),
