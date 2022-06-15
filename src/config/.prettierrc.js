@@ -7,6 +7,7 @@
  * 4. Set the "Editor: Format On Save" checkbox to checked
  */
 module.exports = {
+  // https://prettier.io/docs/en/options.html
   arrowParens: 'always',
   bracketSameLine: false,
   bracketSpacing: false,
@@ -20,12 +21,7 @@ module.exports = {
   tabWidth: 2,
   trailingComma: 'all',
   useTabs: false,
-  /**
-   * currently @prettier/plugin-pug works with the `npm run format` script, but
-   * the Prettier extension does not auto-format code on save of the file
-   *
-   * https://github.com/prettier/plugin-pug/
-   */
+  // https://prettier.github.io/plugin-pug/guide/
   pugAttributeSeparator: 'as-needed',
   pugClassNotation: 'as-is',
   pugBracketSameLine: false,
