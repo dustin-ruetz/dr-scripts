@@ -1,5 +1,5 @@
 const path = require('path')
-const {fromRoot, hasFile, ifAnyDep} = require('../utils.js')
+const {hasFile, ifAnyDep} = require('../utils.js')
 
 const here = (p) => path.join(__dirname, p)
 
@@ -11,7 +11,7 @@ const ignores = [
 ]
 
 const jestConfig = {
-  roots: [fromRoot('src')],
+  roots: ['<rootDir>/src/'],
   /**
    * provide an array of globs to path(s) that we want Jest to collect coverage for
    *
@@ -30,6 +30,7 @@ const jestConfig = {
     },
   },
   moduleFileExtensions: ['js', 'json', 'jsx', 'ts', 'tsx'],
+  modulePaths: ['<rootDir>/src/'],
   /**
    * by default, Jest uses a browser-like environment via `jsdom`
    * here we set the environment based on the dependencies
@@ -41,8 +42,8 @@ const jestConfig = {
    * 2. with a '.test' in the filename
    */
   testMatch: [
-    '**/__tests__/**/*.+(js|jsx|ts|tsx)',
-    '**/*.test.+(js|jsx|ts|tsx)',
+    '<rootDir>/**/__tests__/**/*.+(js|jsx|ts|tsx)',
+    '<rootDir>/**/*.test.+(js|jsx|ts|tsx)',
   ],
   // note that `testPathIgnorePatterns` ignores '/node_modules/' by default
   testPathIgnorePatterns: [...ignores],
@@ -63,7 +64,7 @@ const jestConfig = {
 }
 
 if (hasFile('tests/setup-env.js')) {
-  jestConfig.setupFilesAfterEnv = [fromRoot('tests/setup-env.js')]
+  jestConfig.setupFilesAfterEnv = ['<rootDir>/tests/setup-env.js']
 }
 
 module.exports = jestConfig
