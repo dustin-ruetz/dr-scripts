@@ -35,7 +35,7 @@ const jestConfig = {
    * by default, Jest uses a browser-like environment via `jsdom`
    * here we set the environment based on the dependencies
    */
-  testEnvironment: ifAnyDep(['react'], 'jsdom', 'node'),
+  testEnvironment: ifAnyDep(['pug', 'react'], 'jsdom', 'node'),
   /**
    * test all of the specified file types:
    * 1. located in '__tests__' directories; and
