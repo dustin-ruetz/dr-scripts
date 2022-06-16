@@ -20,8 +20,8 @@ module.exports = {
      * open the ./eslint-plugins/*.js files to see how they work
      */
     ifAnyDep('pug', './eslint-extends/pug.js'),
-    ifAnyDep('react', './eslint-plugins/react.js'),
     ifAnyDep('react', './eslint-plugins/jsx-a11y.js'),
+    ifAnyDep('react', './eslint-plugins/react.js'),
   ].filter(Boolean),
   parserOptions: {
     ecmaFeatures: {
