@@ -97,15 +97,6 @@ function isOptedIn(key, t = true, f = false) {
   return contents.includes(key) ? t : f
 }
 
-function isOptedOut(key, t = true, f = false) {
-  if (!fs.existsSync(fromRoot('.opt-out'))) {
-    return f
-  }
-
-  const contents = fs.readFileSync(fromRoot('.opt-out'), 'utf-8')
-  return contents.includes(key) ? t : f
-}
-
 function hasLocalConfig(moduleName, searchOptions = {}) {
   const explorerSync = cosmiconfigSync(moduleName, searchOptions)
   const result = explorerSync.search(pkgPath)
@@ -122,7 +113,6 @@ module.exports = {
   hasPkgProp,
   ifAnyDep,
   isOptedIn,
-  isOptedOut,
   parseEnv,
   pkg,
   resolveBin,
