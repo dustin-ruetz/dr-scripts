@@ -1,3 +1,9 @@
+# To enable other repositories to use this .prettierignore file in VS Code:
+# 
+# 1. Create `./vscode/settings.json` in the root of the repo.
+# 2. Add the following line to the config object:
+#    "prettier.ignorePath": "./node_modules/dr-scripts/src/config/.prettierignore"
+# 3. Save the file.
 .next/
 build/
 coverage/

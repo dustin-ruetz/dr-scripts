@@ -1,3 +1,12 @@
+# To enable other repositories to use this .eslintignore file in VS Code:
+# 
+# 1. Create `./vscode/settings.json` in the root of the repo.
+# 2. Add the following lines to the config object:
+#    "eslint.options": {
+#      "ignorePath": "./node_modules/dr-scripts/src/config/.eslintignore"
+#    },
+# 3. Save the file.
+
 # the `!*` path is a negated ignore pattern; this enables
 # linting for all of the ./src/config/ files
 !*
