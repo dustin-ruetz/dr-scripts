@@ -21,14 +21,15 @@ module.exports = {
   tabWidth: 2,
   trailingComma: 'all',
   useTabs: false,
-  // https://prettier.github.io/plugin-pug/guide/
+  // https://prettier.github.io/plugin-pug/guide/standard-prettier-overrides.html
+  pugSingleQuote: false,
+  // https://prettier.github.io/plugin-pug/guide/pug-specific-options.html
   pugAttributeSeparator: 'as-needed',
-  pugClassNotation: 'as-is',
-  pugBracketSameLine: false,
   pugClassLocation: 'before-attributes',
+  pugClassNotation: 'as-is',
   pugCommentPreserveSpaces: 'trim-all',
   pugExplicitDiv: true,
   pugIdNotation: 'as-is',
-  pugSingleQuote: false,
+  pugSortAttributes: 'asc',
   pugWrapAttributesThreshold: 1,
 }
