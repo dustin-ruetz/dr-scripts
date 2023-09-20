@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Git checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0
       - name: Set up Node.js
@@ -26,11 +26,19 @@ jobs:
         run: npm run lint
       - name: Test codebase
         run: npm test
+      - name: Load secrets from 1Password
+        id: op-credentials
+        uses: 1password/load-secrets-action@v1
+        with:
+          export-env: false
+        env:
+          OP_SERVICE_ACCOUNT_TOKEN: ${{ secrets.OP_SERVICE_ACCOUNT_TOKEN }}
+          DR_SCRIPTS_NPM_TOKEN: 'op://ci-cd/DR_SCRIPTS_NPM_TOKEN/token'
       - name: Release package
         env:
           # note - environment secret key names for semantic-release must be GH_TOKEN and NPM_TOKEN
           # https://github.com/semantic-release/github/blob/master/README.md
           # https://github.com/semantic-release/npm/blob/master/README.md
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+          NPM_TOKEN: ${{ steps.op-credentials.outputs.DR_SCRIPTS_NPM_TOKEN }}
         run: npx semantic-release --branches main
