@@ -36,7 +36,7 @@ jobs:
           DR_SCRIPTS_NPM_TOKEN: 'op://ci-cd/DR_SCRIPTS_NPM_TOKEN/token'
       - name: Release package
         env:
-          # note - environment secret key names for semantic-release must be GH_TOKEN and NPM_TOKEN
+          # Note that environment secret key names for semantic-release must be GITHUB_TOKEN and NPM_TOKEN.
           # https://github.com/semantic-release/github/blob/master/README.md
           # https://github.com/semantic-release/npm/blob/master/README.md
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
