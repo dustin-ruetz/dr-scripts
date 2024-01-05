@@ -33,7 +33,8 @@ jobs:
           export-env: false
         env:
           OP_SERVICE_ACCOUNT_TOKEN: ${{ secrets.OP_SERVICE_ACCOUNT_TOKEN }}
-          DR_SCRIPTS_NPM_TOKEN: 'op://ci-cd/DR_SCRIPTS_NPM_TOKEN/token'
+          # Human-readable 1Password CLI secret reference - 'op://SA - Repos_GitHub/dr-scripts/DR_SCRIPTS_NPM_TOKEN'
+          DR_SCRIPTS_NPM_TOKEN: 'op://yhyrnlsxmxerazmg3j2rvjxzpq/ij2h5yoaamvzlbqx7pnxbwrdj4/DR_SCRIPTS_NPM_TOKEN'
       - name: Release package
         env:
           # Note that environment secret key names for semantic-release must be GITHUB_TOKEN and NPM_TOKEN.
