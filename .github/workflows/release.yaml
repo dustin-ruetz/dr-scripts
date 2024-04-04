@@ -20,8 +20,8 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 'lts/*'
-      - name: Install dependencies via CI
-        run: npm ci
+      - name: Install dependencies
+        run: npm clean-install
       - name: Lint codebase
         run: npm run lint
       - name: Test codebase
