@@ -21,6 +21,7 @@ module.exports = {
   tabWidth: 2,
   trailingComma: 'all',
   useTabs: false,
+  plugins: ['@prettier/plugin-pug'],
   // https://prettier.github.io/plugin-pug/guide/standard-prettier-overrides.html
   pugSingleQuote: false,
   // https://prettier.github.io/plugin-pug/guide/pug-specific-options.html
