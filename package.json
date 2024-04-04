@@ -7,7 +7,8 @@
     "lint": "node ./src/ lint",
     "init-repo": "node ./src/ init-repo",
     "test": "node ./src/ test",
-    "test:coverage": "node ./src/ test --coverage"
+    "test:coverage": "node ./src/ test --coverage",
+    "validate": "npm run format && npm run lint && npm run test:coverage"
   },
   "husky": {
     "hooks": {
